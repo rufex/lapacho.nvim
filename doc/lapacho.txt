@@ -1,0 +1,60 @@
+*lapacho.txt*                     Neovim plugin for managing shada files per Git branch
+
+===============================================================================
+
+1. Introduction                                          |lapacho-introduction|
+2. Installation                                          |lapacho-installation|
+3. Usage                                                        |lapacho-usage|
+4. Commands                                                  |lapacho-commands|
+5. Configuration                                        |lapacho-configuration|
+
+===============================================================================
+
+1. Introduction                                          *lapacho-introduction*
+
+**Lapacho** is a Neovim plugin designed to enhance session management by automatically saving and loading shada files according to the Git branch in use. This allows users to maintain separate session files for different branches, providing a more organized workflow.
+Shada files store information like marks, command line history and search history. For more information on the shada file, refer to the Neovim documentation using the `:h shada` command.
+It can be used as a complement of session management plugins like auto-session <https://github.com/rmagatti/auto-session>.
+
+2. Installation                                          *lapacho-installation*
+
+You can install Lapacho using a lazy plugin manager like `lazy.nvim`. Add the following line to your Neovim configuration:
+
+>lua
+--init.lua:
+  {'rufex/lapacho.nvim'}
+--plugins/lapacho.lua:
+  return {
+    'rufex/lapacho.nvim'
+  }
+<
+
+2. Usage                                                        *lapacho-usage*
+
+Once installed, Lapacho will automatically save and load shada files based on the current Git branch. 
+Currently, shada files are saved when leaving a buffer and loaded when entering a buffer. 
+Users can also manually trigger the save and load actions using the provided commands.
+
+3. Commands                                                   *lapacho-commands*
+
+Lapacho provides the following commands:
+
+- `:LapachoSave` - Manually save the current shada file for the current Git branch.
+- `:LapachoLoad` - Manually load the shada file for the current Git branch.
+- `:LapachoPrintDir` - Print the directory where the shada files are stored.
+
+These commands can be executed from the Neovim command line.
+
+4. Configuration                                          *lapacho-configuration*
+
+Lapacho supports some configuration options that can be passed to the setup function:
+
+- `disable_autocmds` (boolean, default: false) - Disable automatic session management via autocmds.
+
+Example configuration:
+
+>lua
+  require('lapacho').setup({ disable_autocmds = true })
+<
+
+vim:tw=78:ts=8:noet:ft=help:norl:
